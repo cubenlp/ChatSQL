@@ -1,6 +1,9 @@
 # ChatSQL
 实现nl2sql，直连数据库并返回查询结果
 
+## 效果演示
+![](figure/ChatSQL演示图.jpg)
+
 ##  特性
 - 2023/04/24 支持web前端
 
