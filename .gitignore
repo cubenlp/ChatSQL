@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+README2.md
 logs/server.log*
 
 # C extensions
