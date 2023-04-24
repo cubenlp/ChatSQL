@@ -5,7 +5,20 @@
 ![](figure/ChatSQL技术流程图.png)
 整体思路如上，目前采用yaml文件代替Table_info表结构
 
+## 🎬开始
+```
+git clone git@github.com:yysirs/ChatSQL.git
+cd ChatSQL
+conda create -n chatsql python=3.9
+conda activate chatsql
+pip install -r requirements.txt
+python main_gui.py
+```
+
 ## 😁效果演示
+```
+python main_gui.py
+```
 ![](figure/ChatSQL演示图.jpg)
 
 ## 👍 特性
