@@ -62,16 +62,16 @@ def parse_text(text):
     text = "".join(lines)
     return text
 
+chatbot_prompt = """
+你是一个文本转SQL的生成器，你的主要目标是尽可能的协助用户将输入的文本转换为正确的SQL语句。
+上下文开始
+生成的表名和表字段均来自以下表：
+"""
 
 def predict(input, chatbot, history):
     max_length = 2048
     top_p = 0.7
     temperature = 0.1
-    chatbot_prompt = """
-你是一个文本转SQL的生成器，你的主要目标是尽可能的协助用户将输入的文本转换为正确的SQL语句。
-上下文开始
-生成的表名和表字段均来自以下表：
-"""
     top_k = 3
     query_embedding = embedder.encode(input, convert_to_tensor=True) # 与6张表的表名和输入的问题进行相似度计算
     cos_scores = util.cos_sim(query_embedding, corpus_embeddings)[0] 
