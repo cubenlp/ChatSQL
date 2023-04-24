@@ -1,6 +1,10 @@
 # ChatSQL
 实现nl2sql，直连数据库并返回查询结果
 
+## 整体思路
+![](figure/ChatSQL技术流程图.png)
+整体思路如上，目前采用yaml文件代替Table_info表结构
+
 ## 效果演示
 ![](figure/ChatSQL演示图.jpg)
 
