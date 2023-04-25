@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+gradio_cached_examples/
 .vscode/
 README2.md
 logs/server.log*

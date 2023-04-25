@@ -1,9 +1,10 @@
 """
 Text2SQL机器人·Prompt
 """
+import numpy as np
 from sentence_transformers import SentenceTransformer, util
 from utility.utils import config_dict as DB_CONFIG
-import torch
+from local_database import db_operate
 
 embedder = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
 
@@ -79,7 +80,6 @@ query_template = """问: <user_input>
 """
 
 # yaml解析
-db_path = DB_CONFIG["db_path"]
 TABLE = DB_CONFIG["TABLE"]
 table_schema = {}
 
@@ -89,11 +89,15 @@ for table_name in TABLE.keys():
     table_info += "表名:" + table_name + "\n"
     table_info += "字段:"
     for idx, filed in enumerate(TABLE[table_name]["field"].items()):
-        table_info += filed[0] + "(" + filed[1] + "),"
         if idx == len(TABLE[table_name]["field"].items()) - 1:
-            table_info += filed[0] + "(" + filed[1] + ")"
+            table_info += filed[0] + "(" + filed[1][0] + ")"
+        else:
+            table_info += filed[0] + "(" + filed[1][0] + "),"
+
     table_schema[TABLE[table_name]["info"]] = table_info
 
+# 获取表的描述信息
 corpus = list(table_schema.keys())
 
+# 向量化
 corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)

@@ -6,84 +6,155 @@ TABLE: #
   cargo: # 表名 
     info: 货物销售表,主要存储货物名称、净收益率、损失率、环比增长率、销售量、货物品类、货物仓库、销售负责人名字、销售部门、销售负责人联系方式
     field: # 字段信息
-      cargo_id: 货物编号
-      cargo_name: 货物名称
-      year: 年份
-      net_yield: 净收益率%
-      loss_rate: 损失率%
-      month_on_month_growth_rate: 环比增长率%
-      sales_volume: 销售量
-      cargo_price: 货物单价
-      cargo_category: 货物品类
-      source_cargo: 货物来源
-      storage_warehouse: 货物仓库
-      sales_person_name: 销售责任人名字
-      sales_person_id: 销售负责人id
-      sales_department: 销售部门
-      sales_person_numbers: 销售负责人联系方式
+      cargo_id: [货物编号, text]
+      cargo_name: [货物名称, text]
+      year: [年份, int]
+      net_yield: [净收益率%, int]
+      loss_rate: [损失率%, int]
+      month_on_month_growth_rate: [环比增长率%, int]
+      sales_volume: [销售量, int]
+      cargo_price: [货物单价, int]
+      cargo_category: [货物品类, text]
+      source_cargo: [货物来源, text]
+      storage_warehouse: [货物仓库, text]
+      sales_person_name: [销售责任人名字, text]
+      sales_person_id: [销售负责人id, text]
+      sales_department: [销售部门, text]
+      sales_person_numbers: [销售负责人联系方式, text]
   sales:
     info: 人员信息表,主要存储销售人员人名、入职时间、当前业绩、职位等级
     field:
-      sales_person_id: 销售人员id
-      sales_person_name: 人员名称
-      sales_person_level: 人员等级
-      sales_person_work_date: 入职时间
-      sales_person_leader_id: 人员主管id
-      sales_person_leader_name: 人员主管名字
-      sales_person_number: 人员电话
-      sales_person_achievement_year: 人员业绩年份
-      sales_person_achievement: 人员业绩
-      sales_person_department: 人员部门名称
-      sales_person_department_id: 人员部门id
+      sales_person_id: [销售人员id, text]
+      sales_person_name: [人员名称, text]
+      sales_person_level: [人员等级, text]
+      sales_person_work_date: [入职时间, text]
+      sales_person_leader_id: [人员主管id, text]
+      sales_person_number: [人员电话, text]
+      sales_person_achievement_year: [人员业绩年份, int]
+      sales_person_achievement: [人员业绩, int]
+      sales_person_department: [人员部门名称, text]
+      sales_person_department_id: [人员部门id, text]
   cargo_info:
     info: 货物信息表,主要存储货物名称、货物来源地、购买价格、货物大类、货物品类、供应商名称和供应商负责人
     field:
-      cargo_info_id: 货物信息id
-      cargo_id: 货物id
-      cargo_name: 货物名称
-      origin_cargo: 货物产地
-      cargo_purchase_price: 货物购买价
-      cargo_type: 货物大类
-      cargo_category: 货物品类
-      cargo_supply_company: 供货公司
-      cargo_num: 货物数量
-      cargo_supply_aftermarket_person: 货物售后负责人
-      cargo_supply_aftermarket_person_number: 货物售后负责人联系电话
-      cargo_supply_market_person: 货物公司销售负责人
-      cargo_supply_market_person_number: 货物公司负责人联系电话
+      cargo_info_id: [货物信息id, text]
+      cargo_id: [货物id, text]
+      cargo_name: [货物名称, text]
+      origin_cargo: [货物产地, text]
+      cargo_purchase_price: [货物购买价, int]
+      cargo_category: [货物品类, text]
+      cargo_supply_company: [供货公司, text]
+      cargo_num: [货物数量, int]
+      cargo_supply_aftermarket_person: [货物售后负责人, text]
+      cargo_supply_aftermarket_person_number: [货物售后负责人联系电话, text]
+      cargo_supply_market_person: [货物公司销售负责人, text]
+      cargo_supply_market_person_number: [货物公司负责人联系电话, text]
   depart_list:
     info: 部门表,主要存储部门名称、部门职责、部门主管
     field:
-      department_id: 部门id
-      department_name: 部门名称
-      department_duty: 部门职责
-      department_lead_name: 部门负责人名字
-      department_lead_name_id: 部门负责人id
-      department_person_nums: 部门人数
+      department_id: [部门id, text]
+      department_name: [部门名称, text]
+      department_duty: [部门职责, text]
+      department_lead_name: [部门负责人名字, text]
+      department_lead_name_id: [部门负责人id, text]
+      department_person_nums: [部门人数, text]
   purchase_info:
     info: 购买信息表,主要存储购买公司名称、购买公司街道、购买负责人、购买货物名称和数量以及类型
     field:
-      purchase_company_id: 货物购买方id
-      purchase_company_name: 货物购买方名称
-      purchase_company_address: 货物购买方地址
-      purchase_company_person_name: 货物购买方负责人人名
-      purchase_company_person_numbers: 货物购买方负责人联系方式
-      purchase_company_person_level: 货物购买方负责人职位
-      purchase_cargo_name_id: 购买货物id
-      purchase_cargo_name: 购买货物名称
-      purchase_cargo_nums: 购买货物数量
-      purchase_cargo_type: 购买货物大类
-      purchase_cargo_category: 购买货物品类
+      purchase_company_id: [货物购买方id, text]
+      purchase_company_name: [货物购买方名称, text]
+      purchase_company_address: [货物购买方地址, text]
+      purchase_company_person_name: [货物购买方负责人人名, text]
+      purchase_company_person_numbers: [货物购买方负责人联系方式, text]
+      purchase_company_person_level: [货物购买方负责人职位, text]
+      purchase_cargo_name_id: [购买货物id, text]
+      purchase_cargo_name: [购买货物名称, text]
+      purchase_cargo_nums: [购买货物数量, int]
+      purchase_cargo_category: [购买货物品类, text]
   supply_company:
     info: 供应商信息表,主要存储供应商名称、供应商地址、供应商货物名称、入供应商目录日期
     field:
-      supply_company_id: 供货公司id
-      supply_company_name: 供货公司名称
-      supply_company_address: 供货公司地址
-      supply_company_product_id: 供货公司货物id
-      supply_company_product_name: 供货公司货物名称
-      supply_company_date: 供货公司入名录时间
+      supply_company_id: [供货公司id, text]
+      supply_company_name: [供货公司名称, text]
+      supply_company_address: [供货公司地址, text]
+      supply_company_product_id: [供货公司货物id, text]
+      supply_company_product_name: [供货公司货物名称, text]
+      supply_company_date: [供货公司入名录时间, text]
       
 
 
+# 表结构信息
+TABLE_Values: # 
+  cargo: # 表名 
+    field: # 字段信息
+      cargo_id: ["001", 002", "003"]
+      cargo_name: [板材, 钢材, 卷板]
+      year: [2019, 2019, 2020]
+      net_yield: [10, 20 ,30]
+      loss_rate: [5, 10 ,15]
+      month_on_month_growth_rate: [1, 2, 3]
+      sales_volume: [500, 1000, 4000]
+      cargo_price: [100, 200, 300]
+      cargo_category: [板材, 板材, 板材]
+      source_cargo: [上海, 北京, 广州]
+      storage_warehouse: [上海青浦仓库, 北京亦庄仓库, 广州三里屯仓库]
+      sales_person_name: [张三, 张三, 李四]
+      sales_person_id: [xs002, xs002, xs003]
+      sales_department: [板材销售部门,板材销售部门,板材销售部门]
+      sales_person_numbers: ["12345666", "12345666", "2344256"]
+  sales:
+    field:
+      sales_person_id: [xs001, xs002, xs003]
+      sales_person_name: [刘五, 张三, 李四]
+      sales_person_level: ["02", "01", "01"]
+      sales_person_work_date: ["2020-08-07", "2021-08-07", "2022-08-07"]
+      sales_person_leader_id: ["", xs001, xs001]
+      sales_person_number: ["5677333", "12345666", "2344256"]
+      sales_person_achievement_year: [2020, 2021, 2022]
+      sales_person_achievement: [1000, 10000, 2000]
+      sales_person_department: [板材销售部,板材销售部,板材销售部]
+      sales_person_department_id: [dep001, dep001, dep001]
+  cargo_info:
+    field:
+      cargo_info_id: [cargo_001, cargo_002, cargo_003]
+      cargo_id: ["001", "002", "003"]
+      cargo_name: [板材, 钢材, 卷板]
+      origin_cargo: [大连, 大连, 大连] # 货物产地
+      cargo_purchase_price: [50, 60, 70]
+      cargo_category: [板材, 板材, 板材]
+      cargo_supply_company: [上海XXX有限公司, 北京XX有限公司, 大连XX有限公司]
+      cargo_num: [100, 100, 100]
+      cargo_supply_aftermarket_person: [AA_1, BB_1, CC_1]
+      cargo_supply_aftermarket_person_number: ["1234555", "214167", "789943"]
+      cargo_supply_market_person: [AA_2, BB_2, CC_2]
+      cargo_supply_market_person_number: ["1234556", "214168", "789944"]
+  depart_list:
+    field:
+      department_id: [dep001, dep002, dep003]
+      department_name: [板材销售部, 钢材销售部, 其他销售部]
+      department_duty: [销售板材, 销售钢材, 销售其他]
+      department_lead_name: [刘五, 王继, 李峰]
+      department_lead_name_id: [xs001, xs004, xs005]
+      department_person_nums: [3, 1, 1]
+  purchase_info:
+    field:
+      purchase_company_id: [pur_0001]
+      purchase_company_name: [上海XX能源有限公司]
+      purchase_company_address: [上海浦东新区]
+      purchase_company_person_name: [张力]
+      purchase_company_person_numbers: ["1231455"]
+      purchase_company_person_level: ["业务负责人"]
+      purchase_cargo_name_id: ["001"]
+      purchase_cargo_name: [板材]
+      purchase_cargo_nums: [10]
+      purchase_cargo_category: [板材]
+  supply_company:
+    info: 供应商信息表,主要存储供应商名称、供应商地址、供应商货物名称、入供应商目录日期
+    field:
+      supply_company_id: [sup_001]
+      supply_company_name: [青岛XXX有限公司]
+      supply_company_address: [青岛市XXX街道]
+      supply_company_product_id: ["002"]
+      supply_company_product_name: [钢材]
+      supply_company_date: ["2019-3-23"]
 

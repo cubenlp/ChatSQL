@@ -1,4 +1,5 @@
 import os
+import re
 os.environ["CUDA_VISIBLE_DEVICES"] = "4"
 import torch
 from transformers import AutoModel, AutoTokenizer
@@ -6,13 +7,14 @@ import gradio as gr
 import mdtex2html
 import platform
 from transformers import AutoTokenizer, AutoModel
-from utility.db_tools import Cur_db
+from utility.utils import config_dict
 from utility.loggers import logger
 from sentence_transformers import util
+from local_database import db_operate
 from prompt import table_schema, embedder,corpus_embeddings, corpus,In_context_prompt, query_template
 
-tokenizer = AutoTokenizer.from_pretrained("./ChatGlm-6b", trust_remote_code=True)
-model = AutoModel.from_pretrained("./ChatGlm-6b", trust_remote_code=True).half().cuda()
+tokenizer = AutoTokenizer.from_pretrained("/home/liushu/program/ChatGLM-6B/ChatGlm-6b", trust_remote_code=True)
+model = AutoModel.from_pretrained("/home/liushu/program/ChatGLM-6B/ChatGlm-6b", trust_remote_code=True).half().cuda()
 model = model.eval()
 
 
@@ -62,17 +64,18 @@ def parse_text(text):
     text = "".join(lines)
     return text
 
-chatbot_prompt = """
-你是一个文本转SQL的生成器，你的主要目标是尽可能的协助用户将输入的文本转换为正确的SQL语句。
-上下文开始
-生成的表名和表字段均来自以下表：
-"""
 
 def predict(input, chatbot, history):
     max_length = 2048
     top_p = 0.7
     temperature = 0.1
     top_k = 3
+    dboperate = db_operate(config_dict['db_path'])
+    chatbot_prompt = """
+你是一个文本转SQL的生成器，你的主要目标是尽可能的协助用户将输入的文本转换为正确的SQL语句。
+上下文开始
+生成的表名和表字段均来自以下表：
+"""
     query_embedding = embedder.encode(input, convert_to_tensor=True) # 与6张表的表名和输入的问题进行相似度计算
     cos_scores = util.cos_sim(query_embedding, corpus_embeddings)[0] 
     top_results = torch.topk(cos_scores, k=top_k) # 拿到topk=3的表名
@@ -91,11 +94,35 @@ def predict(input, chatbot, history):
     chatbot_prompt += query_template
     query = chatbot_prompt.replace("<user_input>", input)
     chatbot.append((parse_text(input), ""))
-    for response, history in model.stream_chat(tokenizer, query, history, max_length=max_length, top_p=top_p,
-                                               temperature=temperature):
-        chatbot[-1] = (parse_text(input), parse_text(response))       
-
-        yield chatbot, history
+    # 流式输出
+    # for response, history in model.stream_chat(tokenizer, query, history, max_length=max_length, top_p=top_p,
+    #                                            temperature=temperature):
+    #     chatbot[-1] = (parse_text(input), parse_text(response))
+    response, history = model.chat(tokenizer, query, history=history, max_length=max_length, top_p=top_p,temperature=temperature)
+    chatbot[-1] = (parse_text(input), parse_text(response))
+    # chatbot[-1] = (chatbot[-1][0], chatbot[-1][1])
+    # 获取结果中的SQL语句
+    response = re.split("```|\n\n", response)
+    for text in response:
+        if "SELECT" in text:
+            response = text
+            break
+    else:
+        response = response[0]
+    response = response.replace("\n", " ").replace("``", "").replace("`", "").strip()
+    response = re.sub(' +',' ', response)
+    # 查询结果
+    if "SELECT" in response:
+        try:
+            sql_stauts = "sql语句执行成功,结果如下:"
+            sql_result = dboperate.query_data(response)
+            sql_result = str(sql_result)
+        except Exception as e:
+            sql_stauts = "sql语句执行失败"
+            sql_result = str(e)
+        chatbot[-1] = (chatbot[-1][0], 
+                       chatbot[-1][1] + "\n\n"+ "===================="+"\n\n" + sql_stauts + "\n\n" + sql_result)
+    return chatbot, history
 
 
 def reset_user_input():
@@ -106,7 +133,7 @@ def reset_state():
     return [], []
 
 with gr.Blocks() as demo:
-    gr.HTML("""<h1 align="center">ChatSQL</h1>""")
+    gr.HTML("""<h1 align="center">🤖ChatSQL</h1>""")
 
     chatbot = gr.Chatbot()
     with gr.Row():
