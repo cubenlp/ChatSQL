@@ -1,5 +1,5 @@
 # ChatSQL
-实现nl2sql，直连数据库并返回查询结果
+基于ChatGLM-6B,实现nl2sql，直连数据库并返回查询结果
 
 ## ✨整体思路
 ![](figure/ChatSQL技术流程图.png)
@@ -64,3 +64,4 @@ python main_gui.py
 * [x] 采用sqlite本地数据库操作,验证SQL语句是否正确
 * [ ] 优化各类查询语句，如：ORDER BY、GROUP BY / HAVING 等复杂查询
 * [ ] 优化相似度查询模块
+* [ ] Docker部署
