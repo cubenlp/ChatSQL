@@ -65,6 +65,19 @@ def parse_text(text):
     return text
 
 
+def obtain_sql(response):
+    response = re.split("```|\n\n", response)
+    for text in response:
+        if "SELECT" in text:
+            response = text
+            break
+    else:
+        response = response[0]
+    response = response.replace("\n", " ").replace("``", "").replace("`", "").strip()
+    response = re.sub(' +',' ', response)
+    return response
+
+
 def predict(input, chatbot, history):
     max_length = 2048
     top_p = 0.7
@@ -102,15 +115,7 @@ def predict(input, chatbot, history):
     chatbot[-1] = (parse_text(input), parse_text(response))
     # chatbot[-1] = (chatbot[-1][0], chatbot[-1][1])
     # 获取结果中的SQL语句
-    response = re.split("```|\n\n", response)
-    for text in response:
-        if "SELECT" in text:
-            response = text
-            break
-    else:
-        response = response[0]
-    response = response.replace("\n", " ").replace("``", "").replace("`", "").strip()
-    response = re.sub(' +',' ', response)
+    response = obtain_sql(response)
     # 查询结果
     if "SELECT" in response:
         try:

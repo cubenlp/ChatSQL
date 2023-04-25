@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-
+DB/
 gradio_cached_examples/
 .vscode/
 README2.md

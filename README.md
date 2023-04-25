@@ -19,7 +19,7 @@ python main_gui.py
 ```
 
 ## 😁效果演示
-![](figure/ChatSQL演示图.jpg)
+![](figure/ChatSQL演示图2.jpg)
 
 ## 👍 特性
 - 🛒 支持多表联查
