@@ -1,5 +1,6 @@
 # ChatSQL
 基于ChatGLM-6B,实现nl2sql，直连数据库并返回查询结果
+目前仅支持MYSQL语法,后续支持多数据库语法查询
 
 ## ✨整体思路
 ![](figure/ChatSQL技术流程图.png)
@@ -65,3 +66,4 @@ python main_gui.py
 * [ ] 优化各类查询语句，如：ORDER BY、GROUP BY / HAVING 等复杂查询
 * [ ] 优化相似度查询模块
 * [ ] Docker部署
+* [ ] 其他SQL语法查询，如：ORACLE(关系型数据库)、Cypher(图数据库)
