@@ -13,8 +13,8 @@ from sentence_transformers import util
 from local_database import db_operate
 from prompt import table_schema, embedder,corpus_embeddings, corpus,In_context_prompt, query_template
 
-tokenizer = AutoTokenizer.from_pretrained("/home/liushu/program/ChatGLM-6B/ChatGlm-6b", trust_remote_code=True)
-model = AutoModel.from_pretrained("/home/liushu/program/ChatGLM-6B/ChatGlm-6b", trust_remote_code=True).half().cuda()
+tokenizer = AutoTokenizer.from_pretrained("./ChatGlm-6b", trust_remote_code=True)
+model = AutoModel.from_pretrained("./ChatGlm-6b", trust_remote_code=True).half().cuda()
 model = model.eval()
 
 
