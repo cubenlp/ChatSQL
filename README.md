@@ -67,3 +67,6 @@ python main_gui.py
 * [ ] 优化相似度查询模块
 * [ ] Docker部署
 * [ ] 其他SQL语法查询，如：ORACLE(关系型数据库)、Cypher(图数据库)
+
+## ❤️致谢
+- [ChatGLM-6B](https://github.com/THUDM/ChatGLM-6B):ChatGLM-6B模型提供大语言模型能力
