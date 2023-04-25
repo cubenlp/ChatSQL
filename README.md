@@ -63,3 +63,4 @@ python main_gui.py
 * [x] yaml可配置数据库schema
 * [x] 采用sqlite本地数据库操作,验证SQL语句是否正确
 * [ ] 优化各类查询语句，如：ORDER BY、GROUP BY / HAVING 等复杂查询
+* [ ] 优化相似度查询模块
