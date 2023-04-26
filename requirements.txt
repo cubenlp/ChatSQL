@@ -5,3 +5,4 @@ torch>=1.10
 gradio
 mdtex2html
 sentencepiece
+sentence_transformers==2.2.2
