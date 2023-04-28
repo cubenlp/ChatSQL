@@ -1,6 +1,7 @@
 # ChatSQL
 基于ChatGLM-6B/MOSS(后续增加),实现nl2sql，直连数据库并返回查询结果
 目前仅支持MYSQL语法,后续支持多数据库语法查询
+* 目前观察下来，ChatGLM-6B多轮交互上限在3-4轮，之后就无法正确生成准确的SQL语句
 
 ## ✨整体思路
 ![](figure/ChatSQL技术流程图.png)
