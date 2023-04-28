@@ -1,6 +1,6 @@
 import os
 import re
-os.environ["CUDA_VISIBLE_DEVICES"] = "4"
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 import torch
 from transformers import AutoModel, AutoTokenizer
 import gradio as gr
@@ -81,7 +81,7 @@ def obtain_sql(response):
 def predict(input, chatbot, history):
     max_length = 2048
     top_p = 0.7
-    temperature = 0.1
+    temperature = 0.2
     top_k = 3
     dboperate = db_operate(config_dict['db_path'])
     chatbot_prompt = """

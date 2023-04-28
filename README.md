@@ -1,5 +1,5 @@
 # ChatSQL
-基于ChatGLM-6B,实现nl2sql，直连数据库并返回查询结果
+基于ChatGLM-6B/MOSS(后续增加),实现nl2sql，直连数据库并返回查询结果
 目前仅支持MYSQL语法,后续支持多数据库语法查询
 
 ## ✨整体思路
@@ -41,22 +41,25 @@ python main_gui.py
 请帮我查询在2019年的货物的净收益率大于10并且销售量大于100并且销售负责人业绩大于1000的销售负责人名字
 
 # max
+请帮我查询货物销售量最大的货物名称
 
 # min
+请帮我查询货物销售量最小的货物名称
 
 # COUNT
+请帮我查询在2019年的货物销售的净收益率大于10的货物名称的数目
 
 # AVG
+请帮我查询2019年以及2020年货物销售量的平均值
 
-# GROUP BY HAVING
+# GROUP BY
+请根据年份进行分组查询货物销售量和年份
 
 # ORDER BY
+请帮我按照数量大小对货物名称进行排序
 
 # SUM	
-
-# like
-
-# TOP limit
+请帮我查询货物的销售量总和是多少
 
 ```
 ##  TODO
@@ -65,8 +68,8 @@ python main_gui.py
 * [x] 采用sqlite本地数据库操作,验证SQL语句是否正确
 * [ ] 优化各类查询语句，如：ORDER BY、GROUP BY / HAVING 等复杂查询
 * [ ] 优化相似度查询模块
-* [ ] Docker部署
 * [ ] 其他SQL语法查询，如：ORACLE(关系型数据库)、Cypher(图数据库)
+* [ ] Docker部署
 
 ## ❤️致谢
 - [ChatGLM-6B](https://github.com/THUDM/ChatGLM-6B):ChatGLM-6B模型提供大语言模型能力
