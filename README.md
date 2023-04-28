@@ -3,6 +3,13 @@
 目前仅支持MYSQL语法,后续支持多数据库语法查询
 * 目前观察下来，ChatGLM-6B多轮交互上限在3-4轮，之后就无法正确生成准确的SQL语句
 
+
+## 🚀 HuggingFace初体验
+[HuggingFace/ChatSQL](https://huggingface.co/spaces/ls291/ChatSQL)❤️感谢HuggingFace提供免费CPU资源
+![](figure/ChatSQL-HF.png)
+> 目前配置为:v2CPU-16GRAM 进行部署，基于ChatGLM-int4模型，推理时间感人，如果本地有资源的同学还是下载在本地进行尝试😘
+
+
 ## ✨整体思路
 ![](figure/ChatSQL技术流程图.png)
 整体思路如上，目前采用yaml文件代替Table_info表结构
