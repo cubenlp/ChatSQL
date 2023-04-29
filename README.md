@@ -10,11 +10,11 @@
 > 目前配置为:v2CPU-16GRAM 进行部署，基于ChatGLM-int4模型，推理时间感人，如果本地有资源的同学还是下载在本地进行尝试😘
 
 
-## ✨整体思路
+## ✨ 整体思路
 ![](figure/ChatSQL技术流程图.png)
 整体思路如上，目前采用yaml文件代替Table_info表结构
 
-## 🎬开始
+## 🎬 开始
 ```
 git clone git@github.com:yysirs/ChatSQL.git
 cd ChatSQL
@@ -23,11 +23,13 @@ conda activate chatsql
 pip install -r requirements.txt
 # 生成本地数据库+插入数据
 python local_database.py
-# 生成SQL
+# 基于GLM生成SQL
 python main_gui.py
+或者 基于MOSS生成SQL
+python main_gui_moss.py
 ```
 
-## 😁效果演示
+## 😁 效果演示
 ![](figure/ChatSQL演示图2.png)
 
 ## 👍 特性
@@ -37,7 +39,7 @@ python main_gui.py
 - 😁 2023/04/25 支持yaml自定义数据
 - 🎗️ 2023/04/25 支持直连本地数据库查询,验证SQL是否正确
 
-## 各种类型的查询
+## 🔍 各种类型的查询
 ```
 # 单表多条件查询
 请帮我查询在2019年的货物销售的净收益率大于10的货物名称
@@ -70,14 +72,17 @@ python main_gui.py
 请帮我查询货物的销售量总和是多少
 
 ```
-##  TODO
+##  🔨 TODO LIST
 * [x] 增加web前端
 * [x] yaml可配置数据库schema
 * [x] 采用sqlite本地数据库操作,验证SQL语句是否正确
+* [ ] In-Context Prompt作为yaml文件外挂
 * [ ] 优化各类查询语句，如：ORDER BY、GROUP BY / HAVING 等复杂查询
 * [ ] 优化相似度查询模块
 * [ ] 其他SQL语法查询，如：ORACLE(关系型数据库)、Cypher(图数据库)
 * [ ] Docker部署
+* [ ] SQL领域微调ChatGLM/MOSS
 
-## ❤️致谢
+## ❤️ 致谢
 - [ChatGLM-6B](https://github.com/THUDM/ChatGLM-6B):ChatGLM-6B模型提供大语言模型能力
+- [MOSS](https://github.com/OpenLMLab/MOSS):MOSS模型提供大语言模型能力
