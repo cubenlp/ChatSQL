@@ -21,6 +21,9 @@ cd ChatSQL
 conda create -n chatsql python=3.9
 conda activate chatsql
 pip install -r requirements.txt
+# 新建文件夹
+mkdir DB
+mkdir logs
 # 生成本地数据库+插入数据
 python local_database.py
 # 基于GLM生成SQL
